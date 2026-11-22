@@ -2,6 +2,7 @@ package com.example.grizzlymod.entity;
 
 import com.example.grizzlymod.registry.ModEntities;
 import com.example.grizzlymod.registry.ModItems;
+import com.example.grizzlymod.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -272,7 +273,7 @@ public class GrizzlyBear extends PathfinderMob {
 
     private void roar() {
         this.roarCooldown = ROAR_INTERVAL;
-        this.playSound(SoundEvents.POLAR_BEAR_WARNING, 1.8F, 0.55F + this.random.nextFloat() * 0.1F);
+        this.playSound(ModSounds.GRIZZLY_ROAR.get(), 1.8F, 0.95F + this.random.nextFloat() * 0.1F);
     }
 
     @Override
@@ -337,7 +338,13 @@ public class GrizzlyBear extends PathfinderMob {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.POLAR_BEAR_HURT;
+        return ModSounds.GRIZZLY_HURT.get();
+    }
+
+    /** Cubs sound higher pitched. */
+    @Override
+    public float getVoicePitch() {
+        return this.isCub() ? super.getVoicePitch() + 0.5F : super.getVoicePitch();
     }
 
     @Override

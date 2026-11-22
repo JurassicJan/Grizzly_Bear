@@ -1,0 +1,10 @@
+{
+  "grizzly_roar": {
+    "sounds": [ "grizzlymod:entity/grizzly/roar" ],
+    "subtitle": "subtitles.grizzlymod.grizzly_roar"
+  },
+  "grizzly_hurt": {
+    "sounds": [ "grizzlymod:entity/grizzly/hurt" ],
+    "subtitle": "subtitles.grizzlymod.grizzly_hurt"
+  }
+}

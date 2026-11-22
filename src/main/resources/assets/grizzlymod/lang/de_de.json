@@ -6,5 +6,7 @@
   "item.grizzlymod.bear_pelt": "Bärenfell",
   "item.grizzlymod.bear_head": "Bärenkopf",
   "entity.grizzlymod.grizzly_cub": "Bärenjunges",
-  "item.grizzlymod.grizzly_cub_spawn_egg": "Bärenjunges-Spawn-Ei"
+  "item.grizzlymod.grizzly_cub_spawn_egg": "Bärenjunges-Spawn-Ei",
+  "subtitles.grizzlymod.grizzly_roar": "Grizzlybär brüllt",
+  "subtitles.grizzlymod.grizzly_hurt": "Grizzlybär wird verletzt"
 }

@@ -6,5 +6,7 @@
   "item.grizzlymod.bear_pelt": "Bear Pelt",
   "item.grizzlymod.bear_head": "Bear Head",
   "entity.grizzlymod.grizzly_cub": "Grizzly Cub",
-  "item.grizzlymod.grizzly_cub_spawn_egg": "Grizzly Cub Spawn Egg"
+  "item.grizzlymod.grizzly_cub_spawn_egg": "Grizzly Cub Spawn Egg",
+  "subtitles.grizzlymod.grizzly_roar": "Grizzly Bear roars",
+  "subtitles.grizzlymod.grizzly_hurt": "Grizzly Bear hurts"
 }
