@@ -23,6 +23,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "model_src", "grizzly_bear.bbmodel")
 JAVA = os.path.join(ROOT, "src/main/java/com/example/grizzlymod/client/GrizzlyBearModel.java")
 TEX = os.path.join(ROOT, "src/main/resources/assets/grizzlymod/textures/entity/grizzly_bear.png")
+TEX_CANNIBAL = os.path.join(ROOT, "src/main/resources/assets/grizzlymod/textures/entity/grizzly_bear_cannibal.png")
 
 ATLAS = 128
 Z0 = 2.5
@@ -130,6 +131,20 @@ BLACK = (14, 10, 9)
 CLAW = (206, 194, 166)
 PINK = (186, 84, 88)
 TEETH = (226, 220, 204)
+EYE_RED = (128, 8, 12)
+BLOOD = (92, 12, 15)
+CANNIBAL = False
+
+PALETTES = {
+    False: dict(RAMP=RAMP, MUZZLE=MUZZLE, PINK=PINK, TEETH=TEETH),
+    # cannibal: much darker fur, dried blood around the mouth, dark red eyes
+    True: dict(
+        RAMP=[(12, 8, 7), (30, 18, 15), (54, 31, 25), (80, 46, 36), (110, 68, 52)],
+        MUZZLE=[(30, 20, 18), (54, 34, 28), (78, 52, 42), (100, 70, 56), (124, 90, 72)],
+        PINK=(104, 24, 32),
+        TEETH=(192, 182, 150),
+    ),
+}
 
 
 def ramp(pal, v):
@@ -204,7 +219,9 @@ def leg_painter(front):
 
 def head_painter(face, x, y, fw, fh, strand):
     if face == "north":
-        if (x, y) in ((1, 2), (fw - 2, 2)):
+        if CANNIBAL and y == 2 and x in (1, 2, fw - 3, fw - 2):
+            return EYE_RED                            # dark red eyes
+        if not CANNIBAL and (x, y) in ((1, 2), (fw - 2, 2)):
             return BLACK                              # eyes
         if y == 1 and x in (1, 2, fw - 3, fw - 2):
             return ramp(RAMP, 0.18)                   # brow
@@ -248,21 +265,43 @@ def ear_painter(face, x, y, fw, fh, strand):
     return fur(RAMP, 0.28, strand)
 
 
-draw_region("head", head_painter)
-draw_region("snout", snout_painter)
-draw_region("jaw", jaw_painter)
-draw_region("ear", ear_painter)
-draw_region("body_rear", body_painter(0.10))
-draw_region("body_mid", body_painter(0.18))
-draw_region("neck", body_painter(0.22, 0.66))
-draw_region("hump", body_painter(0.34, 0.72))
-draw_region("tail", body_painter(0.05, 0.45))
-draw_region("leg_front", leg_painter(True))
-draw_region("leg_rear", leg_painter(False))
+def with_blood(painter, prob):
+    """Cannibal only: dried blood patches (never over eyes, nose, teeth or claws)."""
+    def p(face, x, y, fw, fh, strand):
+        col = painter(face, x, y, fw, fh, strand)
+        if CANNIBAL and tuple(col) not in (BLACK, TEETH, CLAW, EYE_RED) and random.random() < prob:
+            j = random.randint(-10, 10)
+            return (BLOOD[0] + j, BLOOD[1], BLOOD[2])
+        return col
+    return p
 
-os.makedirs(os.path.dirname(TEX), exist_ok=True)
-img.save(TEX)
-img.resize((ATLAS * 4, ATLAS * 4), Image.NEAREST).save("/tmp/grizzly_atlas_preview.png")
+
+def build(cannibal, path):
+    global img, px, RAMP, MUZZLE, PINK, TEETH, CANNIBAL
+    CANNIBAL = cannibal
+    RAMP, MUZZLE = PALETTES[cannibal]["RAMP"], PALETTES[cannibal]["MUZZLE"]
+    PINK, TEETH = PALETTES[cannibal]["PINK"], PALETTES[cannibal]["TEETH"]
+    img = Image.new("RGBA", (ATLAS, ATLAS), (0, 0, 0, 0))
+    px = img.load()
+    draw_region("head", with_blood(head_painter, 0.07))
+    draw_region("snout", with_blood(snout_painter, 0.32))
+    draw_region("jaw", with_blood(jaw_painter, 0.38))
+    draw_region("ear", ear_painter)
+    draw_region("body_rear", body_painter(0.10))
+    draw_region("body_mid", body_painter(0.18))
+    draw_region("neck", with_blood(body_painter(0.22, 0.66), 0.03))
+    draw_region("hump", body_painter(0.34, 0.72))
+    draw_region("tail", body_painter(0.05, 0.45))
+    draw_region("leg_front", with_blood(leg_painter(True), 0.10))
+    draw_region("leg_rear", leg_painter(False))
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    img.save(path)
+    name = "cannibal" if cannibal else "normal"
+    img.resize((ATLAS * 4, ATLAS * 4), Image.NEAREST).save("/tmp/grizzly_atlas_%s.png" % name)
+
+
+build(False, TEX)
+build(True, TEX_CANNIBAL)
 
 
 # ---------------------------------------------------------------- Java emission

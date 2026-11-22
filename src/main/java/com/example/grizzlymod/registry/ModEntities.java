@@ -17,4 +17,11 @@ public class ModEntities {
                     .sized(1.7F, 1.7F)
                     .clientTrackingRange(10)
                     .build("grizzly_bear"));
+
+    /** Cub: no biome spawn of its own, it appears with normal grizzlies (34%). Same class, different type. */
+    public static final RegistryObject<EntityType<GrizzlyBear>> GRIZZLY_CUB = ENTITIES.register("grizzly_cub",
+            () -> EntityType.Builder.of(GrizzlyBear::new, MobCategory.CREATURE)
+                    .sized(0.9F, 0.9F)
+                    .clientTrackingRange(10)
+                    .build("grizzly_cub"));
 }

@@ -4,5 +4,7 @@
   "item.grizzlymod.bear_meat": "Raw Bear Meat",
   "item.grizzlymod.cooked_bear_meat": "Cooked Bear Meat",
   "item.grizzlymod.bear_pelt": "Bear Pelt",
-  "item.grizzlymod.bear_head": "Bear Head"
+  "item.grizzlymod.bear_head": "Bear Head",
+  "entity.grizzlymod.grizzly_cub": "Grizzly Cub",
+  "item.grizzlymod.grizzly_cub_spawn_egg": "Grizzly Cub Spawn Egg"
 }

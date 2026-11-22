@@ -4,5 +4,7 @@
   "item.grizzlymod.bear_meat": "Rohes Bärenfleisch",
   "item.grizzlymod.cooked_bear_meat": "Gebratenes Bärenfleisch",
   "item.grizzlymod.bear_pelt": "Bärenfell",
-  "item.grizzlymod.bear_head": "Bärenkopf"
+  "item.grizzlymod.bear_head": "Bärenkopf",
+  "entity.grizzlymod.grizzly_cub": "Bärenjunges",
+  "item.grizzlymod.grizzly_cub_spawn_egg": "Bärenjunges-Spawn-Ei"
 }

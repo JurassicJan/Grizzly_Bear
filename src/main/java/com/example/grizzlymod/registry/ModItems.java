@@ -16,6 +16,9 @@ public class ModItems {
     public static final RegistryObject<Item> GRIZZLY_BEAR_SPAWN_EGG = ITEMS.register("grizzly_bear_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.GRIZZLY_BEAR, 0x4A3020, 0x8A6540, new Item.Properties()));
 
+    public static final RegistryObject<Item> GRIZZLY_CUB_SPAWN_EGG = ITEMS.register("grizzly_cub_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.GRIZZLY_CUB, 0x8A4A28, 0xC89868, new Item.Properties()));
+
     public static final RegistryObject<Item> BEAR_MEAT = ITEMS.register("bear_meat",
             () -> new Item(new Item.Properties().food(
                     new FoodProperties.Builder().nutrition(3).saturationMod(0.3F).meat().build())));

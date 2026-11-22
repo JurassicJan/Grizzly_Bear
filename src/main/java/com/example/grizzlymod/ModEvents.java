@@ -18,6 +18,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBear.createAttributes().build());
+        event.put(ModEntities.GRIZZLY_CUB.get(), GrizzlyBear.createCubAttributes().build());
     }
 
     @SubscribeEvent
@@ -33,6 +34,7 @@ public class ModEvents {
     public static void addToCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.GRIZZLY_BEAR_SPAWN_EGG);
+            event.accept(ModItems.GRIZZLY_CUB_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.BEAR_MEAT);
             event.accept(ModItems.COOKED_BEAR_MEAT);
