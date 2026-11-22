@@ -21,10 +21,10 @@ PAL = {
     "C": (106, 62, 36),     # cooked shadow
     "h": (190, 130, 78),    # cooked highlight
     "g": (62, 36, 22),      # grill mark
-    "b": (92, 60, 36),      # fur
-    "d": (56, 36, 24),      # dark fur
-    "l": (140, 100, 62),    # light fur tip
-    "t": (150, 114, 80),    # muzzle
+    "b": (134, 65, 34),      # fur
+    "d": (88, 42, 24),      # dark fur
+    "l": (174, 93, 46),    # light fur tip
+    "t": (184, 122, 82),    # muzzle
     "k": (14, 10, 9),       # black
     "e": (206, 194, 166),   # claw
 }
