@@ -5,7 +5,7 @@
 - Modell aus `model_src/grizzly_bear.bbmodel`, realistisch bemalte Fell-Textur
 - Greift Spieler automatisch an (bis 24 Blöcke), 40 HP, 8 Schaden
 - Ist der Spieler näher als ca. 2,5 Blöcke (Mitte zu Mitte), stellt er sich auf die Hinterbeine und brüllt
-- 37 % der Bären spawnen als **Kannibale**: deutlich dunkleres Fell, Blutflecken am Maul, dunkelrote Augen
+- 37 % der Bären spawnen als **Kannibale**: deutlich dunkleres Fell, Blutflecken am Maul, dunkelrote Augen; Kannibalen greifen Bärenjunge an
 - Normale Bären (die anderen 63 %) bringen mit 34 % Wahrscheinlichkeit 1-2 **Bärenjunge** mit. Die Jungen folgen einem Erwachsenen, greifen nicht an und fliehen bei Schaden; Bären in der Nähe verteidigen sie
 - Wird er von einem Projektil getroffen (Pfeil, Dreizack, Schneeball ...), flieht er 15 Sekunden lang
 

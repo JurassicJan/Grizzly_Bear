@@ -147,6 +147,9 @@ public class GrizzlyBear extends PathfinderMob {
 
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::canNotice));
+        // cannibals hunt the cubs of other bears
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, GrizzlyBear.class, 10, true, false,
+                other -> this.isCannibal() && other instanceof GrizzlyBear bear && bear.isCub()));
     }
 
     @Override
@@ -278,10 +281,13 @@ public class GrizzlyBear extends PathfinderMob {
         if (wasHurt && !this.level().isClientSide) {
             if (this.isCub()) {
                 // the adults nearby defend the cub
-                if (source.getEntity() instanceof LivingEntity attacker && !(attacker instanceof GrizzlyBear)
+                // (normal adults also defend against cannibals, but never against each other)
+                if (source.getEntity() instanceof LivingEntity attacker
+                        && !(attacker instanceof GrizzlyBear other && !other.isCannibal())
                         && !(attacker instanceof Player p && (p.isCreative() || p.isSpectator()))) {
                     for (GrizzlyBear adult : this.level().getEntitiesOfClass(GrizzlyBear.class,
-                            this.getBoundingBox().inflate(16.0D), b -> !b.isCub() && b.isAlive())) {
+                            this.getBoundingBox().inflate(16.0D),
+                            b -> !b.isCub() && !b.isCannibal() && b != attacker && b.isAlive())) {
                         adult.setTarget(attacker);
                     }
                 }
