@@ -12,12 +12,12 @@ public class GrizzlyBearRenderer extends MobRenderer<GrizzlyBear, GrizzlyBearMod
             new ResourceLocation(GrizzlyMod.MOD_ID, "textures/entity/grizzly_bear.png");
 
     public GrizzlyBearRenderer(EntityRendererProvider.Context context) {
-        super(context, new GrizzlyBearModel<>(context.bakeLayer(GrizzlyBearModel.LAYER_LOCATION)), 1.0F);
+        super(context, new GrizzlyBearModel<>(context.bakeLayer(GrizzlyBearModel.LAYER_LOCATION)), 1.3F);
     }
 
     @Override
     protected void scale(GrizzlyBear bear, PoseStack poseStack, float partialTick) {
-        poseStack.scale(1.25F, 1.25F, 1.25F);
+        poseStack.scale(1.6F, 1.6F, 1.6F);
     }
 
     @Override
