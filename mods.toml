@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="grizzlymod"
+version="1.0.0"
+displayName="Grizzly Bear"
+description='''
+Adds a grizzly bear that roams the taiga, attacks players on sight and flees when shot.
+'''
+
+[[dependencies.grizzlymod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.grizzlymod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
