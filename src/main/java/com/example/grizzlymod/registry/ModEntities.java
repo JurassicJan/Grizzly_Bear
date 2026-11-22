@@ -14,7 +14,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<GrizzlyBear>> GRIZZLY_BEAR = ENTITIES.register("grizzly_bear",
             () -> EntityType.Builder.of(GrizzlyBear::new, MobCategory.CREATURE)
-                    .sized(2.2F, 2.4F)
+                    .sized(1.7F, 1.7F)
                     .clientTrackingRange(10)
                     .build("grizzly_bear"));
 }

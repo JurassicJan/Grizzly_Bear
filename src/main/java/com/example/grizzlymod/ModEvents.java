@@ -33,6 +33,13 @@ public class ModEvents {
     public static void addToCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.GRIZZLY_BEAR_SPAWN_EGG);
+        } else if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            event.accept(ModItems.BEAR_MEAT);
+            event.accept(ModItems.COOKED_BEAR_MEAT);
+        } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.BEAR_PELT);
+        } else if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(ModItems.BEAR_HEAD);
         }
     }
 }

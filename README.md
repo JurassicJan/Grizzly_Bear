@@ -1,13 +1,28 @@
 # Grizzly Bear Mod (Forge 1.20.1)
 
-- Grizzlybär spawnt in allen Taiga-Biomen (`#minecraft:is_taiga`), einzeln oder zu zweit
-- Greift Spieler automatisch an (Reichweite 24 Blöcke), Schaden 8, 40 HP
+## Der Bär
+- Spawnt in allen Taiga-Biomen (`#minecraft:is_taiga`), einzeln oder zu zweit
+- Modell aus `model_src/grizzly_bear.bbmodel`, realistisch bemalte Fell-Textur
+- Greift Spieler automatisch an (bis 24 Blöcke), 40 HP, 8 Schaden
+- Ist der Spieler näher als ca. 2,5 Blöcke (Mitte zu Mitte), stellt er sich auf die Hinterbeine und brüllt
 - Wird er von einem Projektil getroffen (Pfeil, Dreizack, Schneeball ...), flieht er 15 Sekunden lang
-- Spawn-Ei im Kreativ-Tab "Spawn-Eier", Drops: Rindfleisch + Leder
+
+## Items
+| Item | Wie |
+|---|---|
+| Rohes Bärenfleisch | Drop (2-4, mit Looting mehr), im Ofen/Räucherofen/Lagerfeuer -> Gebratenes Bärenfleisch |
+| Bärenfell | Drop (1-2) |
+| Bärenkopf | Helm, craftbar aus 5 Bärenfellen (wie ein Lederhelm). Getragen: Bären bemerken dich erst ab 19 statt 24 Blöcken (-5) |
+| Grizzlybär-Spawn-Ei | Kreativ-Tab "Spawn-Eier" |
 
 ## Bauen
-Mit GitHub Actions: Ordner in ein Repo pushen, unter Actions das Artifact `grizzlymod` (JAR) laden.
-Lokal: Gradle 8.x + JDK 17, dann `gradle build` -> `build/libs/grizzlymod-1.0.0.jar`
-(oder Gradle-Wrapper aus dem offiziellen Forge-1.20.1-MDK hineinkopieren).
+Mit GitHub Actions: Push -> Reiter Actions -> Artifact `grizzlymod` (JAR).
+Lokal: Gradle 8.x + JDK 17, `gradle build` -> `build/libs/grizzlymod-1.0.0.jar`
 
-Einstellungen (Spawn-Gewicht, Flucht-Dauer, Werte): `add_grizzly_spawns.json` bzw. `GrizzlyBear.java`.
+## Modell oder Texturen ändern
+`GrizzlyBearModel.java` und `grizzly_bear.png` werden von `tools/generate_model.py` erzeugt:
+Neue `.bbmodel` nach `model_src/grizzly_bear.bbmodel` legen, `python3 tools/generate_model.py` ausführen (benötigt Pillow).
+Item-Icons: `python3 tools/generate_items.py`.
+
+Einstellungen: Spawn-Gewicht in `add_grizzly_spawns.json`, Größe `MODEL_SCALE` in `GrizzlyBearRenderer.java`,
+Distanzen und Werte oben in `GrizzlyBear.java`, Position des Bärenkopf-Hutes in `BearHeadModel.java`.

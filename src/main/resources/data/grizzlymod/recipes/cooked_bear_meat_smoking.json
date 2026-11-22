@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "ingredient": { "item": "grizzlymod:bear_meat" },
+  "result": "grizzlymod:cooked_bear_meat",
+  "experience": 0.35,
+  "cookingtime": 100
+}
